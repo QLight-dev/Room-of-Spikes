@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("startwave");
+            AudioSource warningSound = GetComponent<AudioSource>();
+            warningSound.PlayOneShot(warningSound.clip, 1f);
 
             generateRandomSpikes();
             ShowGhostSpikes();
