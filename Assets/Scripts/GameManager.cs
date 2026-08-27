@@ -18,25 +18,28 @@ public class GameManager : MonoBehaviour
             spike.SetActive(false);
         }
 
-        StartCoroutine(startWave());
+        StartCoroutine(gameLoop());
     }
 
     void Update() { }
 
-    IEnumerator startWave()
+    IEnumerator gameLoop()
     {
-        Debug.Log("startwave");
+        while (true)
+        {
+            Debug.Log("startwave");
 
-        generateRandomSpikes();
-        ShowGhostSpikes();
-        yield return new WaitForSeconds(1);
+            generateRandomSpikes();
+            ShowGhostSpikes();
+            yield return new WaitForSeconds(1);
 
-        HideGhostSpikes();
+            HideGhostSpikes();
 
-        FoldChosenSpikes();
-        yield return new WaitForSeconds(1);
+            FoldChosenSpikes();
+            yield return new WaitForSeconds(1);
 
-        UnfoldChosenSpikes();
+            UnfoldChosenSpikes();
+        }
     }
 
     private void generateRandomSpikes()
