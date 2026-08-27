@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             do
             {
                 duplicate = false;
-                randomSpikesUpper[spikeCount] = Random.Range(34, 66);
+                randomSpikesUpper[spikeCount] = Random.Range(34, 67);
 
                 for (int arrayCount = 0; arrayCount < spikeCount; arrayCount++)
                 {
