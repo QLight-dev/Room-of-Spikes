@@ -27,18 +27,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("startwave");
 
-        yield return null;
         generateRandomSpikes();
-
-        yield return null;
-
         ShowGhostSpikes();
         yield return new WaitForSeconds(1);
 
         HideGhostSpikes();
 
         FoldChosenSpikes();
-        yield return null;
+        yield return new WaitForSeconds(1);
+
+        UnfoldChosenSpikes();
     }
 
     private void generateRandomSpikes()
@@ -96,6 +94,19 @@ public class GameManager : MonoBehaviour
             spike.Fold();
             spike = GameObject.Find("Spike (" + randomSpikesUpper[i] + ")").GetComponent<Spike>();
             spike.Fold();
+        }
+    }
+
+    private void UnfoldChosenSpikes()
+    {
+        for (int i = 0; i <= 16; i++)
+        {
+            Spike spike = GameObject
+                .Find("Spike (" + randomSpikesLower[i] + ")")
+                .GetComponent<Spike>();
+            spike.Unfold();
+            spike = GameObject.Find("Spike (" + randomSpikesUpper[i] + ")").GetComponent<Spike>();
+            spike.Unfold();
         }
     }
 
