@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     private GameObject[] GhostSpikes = new GameObject[67];
 
+    public AudioClip warningSFX;
+    public AudioClip drawSwordSFX;
+
     void Start()
     {
         // get all ghost spikes and put them into an array for later use
@@ -25,17 +28,18 @@ public class GameManager : MonoBehaviour
 
     IEnumerator gameLoop()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
         while (true)
         {
-            AudioSource warningSound = GetComponent<AudioSource>();
-            warningSound.PlayOneShot(warningSound.clip, 1f);
 
             generateRandomSpikes();
+            audioSource.PlayOneShot(warningSFX, 1f);
             ShowGhostSpikes();
             yield return new WaitForSeconds(1);
 
             HideGhostSpikes();
 
+            audioSource.PlayOneShot(drawSwordSFX, 1f);
             FoldChosenSpikes();
             yield return new WaitForSeconds(1);
 
