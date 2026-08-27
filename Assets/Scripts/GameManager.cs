@@ -6,8 +6,18 @@ public class GameManager : MonoBehaviour
     private int[] randomSpikesLower = new int[17];
     private int[] randomSpikesUpper = new int[17];
 
+    private GameObject[] GhostSpikes = new GameObject[67];
+
     void Start()
     {
+        // get all ghost spikes and put them into an array for later use
+        for (int ghostSpike = 1; ghostSpike <= 66; ghostSpike++)
+        {
+            GameObject spike = GameObject.Find("Ghost Spike (" + ghostSpike + ")");
+            GhostSpikes[ghostSpike] = spike;
+            spike.SetActive(false);
+        }
+
         StartCoroutine(startWave());
     }
 
@@ -21,6 +31,12 @@ public class GameManager : MonoBehaviour
         generateRandomSpikes();
 
         yield return null;
+
+        ShowGhostSpikes();
+        yield return new WaitForSeconds(1);
+
+        HideGhostSpikes();
+
         FoldChosenSpikes();
         yield return null;
     }
@@ -80,6 +96,24 @@ public class GameManager : MonoBehaviour
             spike.Fold();
             spike = GameObject.Find("Spike (" + randomSpikesUpper[i] + ")").GetComponent<Spike>();
             spike.Fold();
+        }
+    }
+
+    private void ShowGhostSpikes()
+    {
+        for (int i = 0; i <= 16; i++)
+        {
+            GhostSpikes[randomSpikesLower[i]].SetActive(true);
+            GhostSpikes[randomSpikesUpper[i]].SetActive(true);
+        }
+    }
+
+    private void HideGhostSpikes()
+    {
+        for (int i = 0; i <= 16; i++)
+        {
+            GhostSpikes[randomSpikesLower[i]].SetActive(false);
+            GhostSpikes[randomSpikesUpper[i]].SetActive(false);
         }
     }
 }
