@@ -46,11 +46,22 @@ public class Laser : MonoBehaviour
         while (elapsed <= laserSpeed)
         {
             elapsed += Time.deltaTime;
-            transform.position = Vector3.Lerp(
-                transform.position,
-                new Vector3(0, transform.position.y, transform.position.z),
-                elapsed / laserSpeed
-            );
+            if (verticalLaser)
+            {
+                transform.position = Vector3.Lerp(
+                    transform.position,
+                    new Vector3(transform.position.x, 0, transform.position.z),
+                    elapsed / laserSpeed
+                );
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(
+                    transform.position,
+                    new Vector3(0, transform.position.y, transform.position.z),
+                    elapsed / laserSpeed
+                );
+            }
             yield return null;
         }
     }
@@ -61,21 +72,43 @@ public class Laser : MonoBehaviour
         while (elapsed < laserSpeed)
         {
             elapsed += Time.deltaTime;
-            if (onLeftSide == false)
+            if (verticalLaser)
             {
-                transform.position = Vector3.Lerp(
-                    transform.position,
-                    new Vector3(-40, transform.position.y, transform.position.z),
-                    elapsed / laserSpeed
-                );
+                if (onBottomside == false)
+                {
+                    transform.position = Vector3.Lerp(
+                        transform.position,
+                        new Vector3(transform.position.x, -30, transform.position.z),
+                        elapsed / laserSpeed
+                    );
+                }
+                else
+                {
+                    transform.position = Vector3.Lerp(
+                        transform.position,
+                        new Vector3(transform.position.x, 30, transform.position.z),
+                        elapsed / laserSpeed
+                    );
+                }
             }
             else
             {
-                transform.position = Vector3.Lerp(
-                    transform.position,
-                    new Vector3(40, transform.position.y, transform.position.z),
-                    elapsed / laserSpeed
-                );
+                if (onLeftSide == false)
+                {
+                    transform.position = Vector3.Lerp(
+                        transform.position,
+                        new Vector3(-40, transform.position.y, transform.position.z),
+                        elapsed / laserSpeed
+                    );
+                }
+                else
+                {
+                    transform.position = Vector3.Lerp(
+                        transform.position,
+                        new Vector3(40, transform.position.y, transform.position.z),
+                        elapsed / laserSpeed
+                    );
+                }
             }
             yield return null;
         }
@@ -87,6 +120,14 @@ public class Laser : MonoBehaviour
         else if (!verticalLaser && !onLeftSide)
         {
             onLeftSide = true;
+        }
+        else if (onBottomside)
+        {
+            onBottomside = false;
+        }
+        else
+        {
+            onBottomside = true;
         }
     }
 }
