@@ -88,8 +88,6 @@ public class GameManager : MonoBehaviour
                 }
             } while (duplicate);
         }
-
-        Debug.Log(string.Join(", ", randomSpikesLower));
     }
 
     private void FoldChosenSpikes()

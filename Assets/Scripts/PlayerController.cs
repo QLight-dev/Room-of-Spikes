@@ -45,4 +45,14 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 4.5f, transform.position.z);
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Lethal"))
+        {
+            Destroy(gameObject);
+            Debug.Log("you died");
+        }
+    }
 }
