@@ -37,40 +37,58 @@ public class GameManager : MonoBehaviour
     IEnumerator gameLoop()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
+        bool LaserWave = false;
+        int numberOfSpikeWaves = 0;
         while (true)
         {
-            generateRandomLaserPositions();
-            ShowGhostLasersHorizontal();
-            audioSource.PlayOneShot(warningSFX, 1f);
-            yield return new WaitForSeconds(1f);
-            DestroyAllGhostLasers();
-            audioSource.PlayOneShot(laserSFX, 1f);
-            ActivateHorizontalLasers();
-            yield return new WaitForSeconds(1f);
-            UnActivateHoriztontalLasers();
-            ShowGhostLasersVertical();
-            audioSource.PlayOneShot(warningSFX, 1f);
-            yield return new WaitForSeconds(1f);
-            DestroyAllGhostLasers();
-            audioSource.PlayOneShot(laserSFX, 1f);
-            ActivateVerticalLasers();
-            yield return new WaitForSeconds(1f);
-            UnActivateVerticalLasers();
-            yield return new WaitForSeconds(1f);
-            // generateRandomSpikes();
-            // audioSource.PlayOneShot(warningSFX, 1f);
-            // ShowGhostSpikes();
-            // yield return new WaitForSeconds(1);
+            if (numberOfSpikeWaves >= Random.Range(3, 5))
+            {
+                numberOfSpikeWaves = 0;
+                LaserWave = true;
+            }
 
-            // HideGhostSpikes();
+            if (LaserWave)
+            {
+                generateRandomLaserPositions();
+                ShowGhostLasersHorizontal();
+                ShowGhostLasersVertical();
+                audioSource.PlayOneShot(warningSFX, 1f);
+                yield return new WaitForSeconds(1f);
+                DestroyAllGhostLasers();
 
-            // audioSource.PlayOneShot(drawSwordSFX, 1f);
-            // FoldChosenSpikes();
-            // yield return new WaitForSeconds(1);
+                audioSource.PlayOneShot(laserSFX, 1f);
+                ActivateHorizontalLasers();
+                ActivateVerticalLasers();
+                yield return new WaitForSeconds(1f);
 
-            // UnfoldChosenSpikes();
+                UnActivateHoriztontalLasers();
+                UnActivateVerticalLasers();
+                yield return new WaitForSeconds(1f);
+                if (Random.Range(1, 2) == 2)
+                {
+                    LaserWave = true;
+                }
+            }
+            else
+            {
+                generateRandomSpikes();
+                audioSource.PlayOneShot(warningSFX, 1f);
+                ShowGhostSpikes();
+                yield return new WaitForSeconds(0.75f);
+
+                HideGhostSpikes();
+
+                audioSource.PlayOneShot(drawSwordSFX, 1f);
+                FoldChosenSpikes();
+                yield return new WaitForSeconds(0.75f);
+
+                UnfoldChosenSpikes();
+                numberOfSpikeWaves++;
+            }
         }
     }
+
+    void LaserWave() { }
 
     private void generateRandomSpikes()
     {
