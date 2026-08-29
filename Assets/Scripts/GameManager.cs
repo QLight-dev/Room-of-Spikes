@@ -1,15 +1,20 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private int[] randomSpikesLower = new int[17];
     private int[] randomSpikesUpper = new int[17];
+    private List<GameObject> activateGhostLasers = new List<GameObject>();
 
     private GameObject[] GhostSpikes = new GameObject[67];
 
     public AudioClip warningSFX;
     public AudioClip drawSwordSFX;
+
+    public GameObject ghostLaserPrefab;
+    public GameObject ghostLaserVerticalPrefab;
 
     public GameObject[] Lasers = new GameObject[12];
 
@@ -34,11 +39,15 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             generateRandomLaserPositions();
-            yield return new WaitForSeconds(1f);
+            ShowGhostLasersHorizontal();
+            yield return new WaitForSeconds(5f);
+            DestroyAllGhostLasers();
             ActivateHorizontalLasers();
             yield return new WaitForSeconds(2f);
             UnActivateHoriztontalLasers();
+            ShowGhostLasersVertical();
             yield return new WaitForSeconds(2f);
+            DestroyAllGhostLasers();
             ActivateVerticalLasers();
             yield return new WaitForSeconds(2f);
             UnActivateVerticalLasers();
@@ -200,5 +209,40 @@ public class GameManager : MonoBehaviour
             GhostSpikes[randomSpikesLower[i]].SetActive(false);
             GhostSpikes[randomSpikesUpper[i]].SetActive(false);
         }
+    }
+
+    void ShowGhostLasersHorizontal()
+    {
+        for (int i = 0; i < Lasers.Length / 2; i++)
+        {
+            GameObject ghostLaser = Instantiate(
+                ghostLaserPrefab,
+                new Vector3(0, Lasers[i].transform.position.y, Lasers[i].transform.position.z),
+                ghostLaserPrefab.transform.rotation
+            );
+            activateGhostLasers.Add(ghostLaser);
+        }
+    }
+
+    void ShowGhostLasersVertical()
+    {
+        for (int i = Lasers.Length / 2; i < Lasers.Length; i++)
+        {
+            GameObject ghostLaser = Instantiate(
+                ghostLaserVerticalPrefab,
+                new Vector3(Lasers[i].transform.position.x, 0, Lasers[i].transform.position.z),
+                ghostLaserVerticalPrefab.transform.rotation
+            );
+            activateGhostLasers.Add(ghostLaser);
+        }
+    }
+
+    void DestroyAllGhostLasers()
+    {
+        foreach (GameObject ghostLaser in activateGhostLasers)
+        {
+            Destroy(ghostLaser);
+        }
+        activateGhostLasers.Clear();
     }
 }

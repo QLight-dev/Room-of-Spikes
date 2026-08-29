@@ -23656,8 +23656,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   warningSFX: {fileID: 8300000, guid: 1e4e9f76a9565fb4a8c4c8becbaa711a, type: 3}
   drawSwordSFX: {fileID: 8300000, guid: 709a825c68cd87441a158c9ea2b8e492, type: 3}
-  ghostLaserPrefab: {fileID: 2641413057367831772, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
-  ghostLaserVerticalPrefab: {fileID: 2111751075215666684, guid: 79a7d8aa202aee4448098d648a69907c, type: 3}
   Lasers:
   - {fileID: 2012945146}
   - {fileID: 1529300318}
@@ -34831,6 +34829,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1001 &7792994584473620390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422836444593023259, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641413057367831772, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
+      propertyPath: m_Name
+      value: Ghost Laser
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f4bde0becf773948b943c60ec703d97, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -34977,6 +35032,7 @@ SceneRoots:
   - {fileID: 612285940}
   - {fileID: 390744690}
   - {fileID: 1122621092}
+  - {fileID: 7792994584473620390}
   - {fileID: 1089105064}
   - {fileID: 1279093863}
   - {fileID: 2018216431}
