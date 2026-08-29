@@ -8,13 +8,10 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private float laserSpeed = 2f;
 
-    private bool onLeftSide = false;
-    private bool onBottomside = false;
+    public bool onLeftSide = false;
+    public bool onBottomside = false;
 
-    void Start()
-    {
-        StartCoroutine(gameLoop());
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update() { }
@@ -27,17 +24,6 @@ public class Laser : MonoBehaviour
     public void UnActivate()
     {
         StartCoroutine(UnActivateCoroutine());
-    }
-
-    IEnumerator gameLoop()
-    {
-        while (true)
-        {
-            Activate();
-            yield return new WaitForSeconds(2f);
-            UnActivate();
-            yield return new WaitForSeconds(4f);
-        }
     }
 
     IEnumerator ActivateCoroutine()

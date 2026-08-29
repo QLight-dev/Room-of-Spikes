@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public AudioClip warningSFX;
     public AudioClip drawSwordSFX;
 
+    public GameObject[] Lasers = new GameObject[12];
+
     void Start()
     {
         // get all ghost spikes and put them into an array for later use
@@ -31,19 +33,28 @@ public class GameManager : MonoBehaviour
         AudioSource audioSource = GetComponent<AudioSource>();
         while (true)
         {
+            generateRandomLaserPositions();
+            yield return new WaitForSeconds(1f);
+            ActivateHorizontalLasers();
+            yield return new WaitForSeconds(2f);
+            UnActivateHoriztontalLasers();
+            yield return new WaitForSeconds(2f);
+            ActivateVerticalLasers();
+            yield return new WaitForSeconds(2f);
+            UnActivateVerticalLasers();
+            yield return new WaitForSeconds(2f);
+            // generateRandomSpikes();
+            // audioSource.PlayOneShot(warningSFX, 1f);
+            // ShowGhostSpikes();
+            // yield return new WaitForSeconds(1);
 
-            generateRandomSpikes();
-            audioSource.PlayOneShot(warningSFX, 1f);
-            ShowGhostSpikes();
-            yield return new WaitForSeconds(1);
+            // HideGhostSpikes();
 
-            HideGhostSpikes();
+            // audioSource.PlayOneShot(drawSwordSFX, 1f);
+            // FoldChosenSpikes();
+            // yield return new WaitForSeconds(1);
 
-            audioSource.PlayOneShot(drawSwordSFX, 1f);
-            FoldChosenSpikes();
-            yield return new WaitForSeconds(1);
-
-            UnfoldChosenSpikes();
+            // UnfoldChosenSpikes();
         }
     }
 
@@ -87,6 +98,63 @@ public class GameManager : MonoBehaviour
                     }
                 }
             } while (duplicate);
+        }
+    }
+
+    private void generateRandomLaserPositions()
+    {
+        for (int laserCount = 0; laserCount < Lasers.Length / 2; laserCount++)
+        {
+            Lasers[laserCount].transform.position = new Vector3(
+                Lasers[laserCount].transform.position.x,
+                Random.Range(-4.5f, 4.5f),
+                Lasers[laserCount].transform.position.z
+            );
+        }
+
+        for (int laserCount = Lasers.Length / 2; laserCount < Lasers.Length; laserCount++)
+        {
+            Lasers[laserCount].transform.position = new Vector3(
+                Random.Range(15f, -15f),
+                Lasers[laserCount].transform.position.y,
+                Lasers[laserCount].transform.position.z
+            );
+        }
+    }
+
+    private void ActivateHorizontalLasers()
+    {
+        for (int i = 0; i < Lasers.Length / 2; i++)
+        {
+            Laser laser = Lasers[i].GetComponent<Laser>();
+            laser.Activate();
+        }
+    }
+
+    private void UnActivateHoriztontalLasers()
+    {
+        for (int i = 0; i < Lasers.Length / 2; i++)
+        {
+            Laser laser = Lasers[i].GetComponent<Laser>();
+            laser.UnActivate();
+        }
+    }
+
+    private void ActivateVerticalLasers()
+    {
+        for (int i = Lasers.Length / 2; i < Lasers.Length; i++)
+        {
+            Laser laser = Lasers[i].GetComponent<Laser>();
+            laser.Activate();
+        }
+    }
+
+    private void UnActivateVerticalLasers()
+    {
+        for (int i = Lasers.Length / 2; i < Lasers.Length; i++)
+        {
+            Laser laser = Lasers[i].GetComponent<Laser>();
+            laser.UnActivate();
         }
     }
 
