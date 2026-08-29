@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public AudioClip warningSFX;
     public AudioClip drawSwordSFX;
+    public AudioClip laserSFX;
 
     public GameObject ghostLaserPrefab;
     public GameObject ghostLaserVerticalPrefab;
@@ -40,18 +41,22 @@ public class GameManager : MonoBehaviour
         {
             generateRandomLaserPositions();
             ShowGhostLasersHorizontal();
-            yield return new WaitForSeconds(5f);
+            audioSource.PlayOneShot(warningSFX, 1f);
+            yield return new WaitForSeconds(1f);
             DestroyAllGhostLasers();
+            audioSource.PlayOneShot(laserSFX, 1f);
             ActivateHorizontalLasers();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             UnActivateHoriztontalLasers();
             ShowGhostLasersVertical();
-            yield return new WaitForSeconds(2f);
+            audioSource.PlayOneShot(warningSFX, 1f);
+            yield return new WaitForSeconds(1f);
             DestroyAllGhostLasers();
+            audioSource.PlayOneShot(laserSFX, 1f);
             ActivateVerticalLasers();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             UnActivateVerticalLasers();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             // generateRandomSpikes();
             // audioSource.PlayOneShot(warningSFX, 1f);
             // ShowGhostSpikes();
