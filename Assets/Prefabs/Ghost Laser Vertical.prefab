@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5735214168272015917}
   - component: {fileID: 2636827008294737362}
   - component: {fileID: 8711059973653444271}
-  - component: {fileID: 653442670230148240}
   - component: {fileID: 7428008869121187125}
   m_Layer: 0
   m_Name: Ghost Laser Vertical
@@ -111,27 +110,6 @@ MonoBehaviour:
   laserSpeed: 1
   onLeftSide: 0
   onBottomside: 0
---- !u!65 &653442670230148240
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111751075215666684}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7428008869121187125
 MonoBehaviour:
   m_ObjectHideFlags: 0

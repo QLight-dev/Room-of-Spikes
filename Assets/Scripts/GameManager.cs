@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
                 ShowGhostLasersHorizontal();
                 ShowGhostLasersVertical();
                 audioSource.PlayOneShot(warningSFX, 1f);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.75f);
                 DestroyAllGhostLasers();
 
                 audioSource.PlayOneShot(laserSFX, 1f);
@@ -64,9 +64,13 @@ public class GameManager : MonoBehaviour
                 UnActivateHoriztontalLasers();
                 UnActivateVerticalLasers();
                 yield return new WaitForSeconds(1f);
-                if (Random.Range(1, 2) == 2)
+                if (Random.Range(1, 3) == 2)
                 {
                     LaserWave = true;
+                }
+                else
+                {
+                    LaserWave = false;
                 }
             }
             else
@@ -74,13 +78,13 @@ public class GameManager : MonoBehaviour
                 generateRandomSpikes();
                 audioSource.PlayOneShot(warningSFX, 1f);
                 ShowGhostSpikes();
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(1f);
 
                 HideGhostSpikes();
 
                 audioSource.PlayOneShot(drawSwordSFX, 1f);
                 FoldChosenSpikes();
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(1f);
 
                 UnfoldChosenSpikes();
                 numberOfSpikeWaves++;
