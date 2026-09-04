@@ -3,14 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField]
+    private GameObject LoadingScreen;
+
     void Start() { }
 
-    // Update is called once per frame
     void Update() { }
 
     public void StartGame()
     {
+        transform.parent.gameObject.SetActive(false);
+        LoadingScreen.SetActive(true);
         SceneManager.LoadScene("Game");
     }
 }
