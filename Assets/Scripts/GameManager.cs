@@ -22,15 +22,20 @@ public class GameManager : MonoBehaviour
     private AudioClip laserSFX;
 
     [Header("Prefabs")]
-    public GameObject ghostLaserPrefab;
-    public GameObject ghostLaserVerticalPrefab;
+    [SerializeField]
+    private GameObject ghostLaserPrefab;
+
+    [SerializeField]
+    private GameObject ghostLaserVerticalPrefab;
+
+    [SerializeField]
+    private GameObject PowerLeachPrefab;
 
     public TMP_Text PowerReserveText;
 
     public GameObject[] Lasers = new GameObject[12];
 
-    //hi
-    private float PowerReserve = 100.0f;
+    public float PowerReserve = 100.0f;
 
     void Start()
     {
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(gameLoop());
+        StartCoroutine(RandomlySpawnPowerLeaches());
     }
 
     void Update() { }
@@ -108,7 +114,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ChangePowerReserve(float amount)
+    IEnumerator RandomlySpawnPowerLeaches()
+    {
+        while (PowerReserve != 0.0)
+        {
+            yield return new WaitForSeconds(1);
+            GameObject PowerLeach = Instantiate(
+                PowerLeachPrefab,
+                new Vector3(Random.Range(-10f, 10), Random.Range(-4f, 4f)),
+                PowerLeachPrefab.transform.rotation
+            );
+            yield return new WaitForSeconds(5);
+            yield return null;
+        }
+    }
+
+    public void ChangePowerReserve(float amount)
     {
         PowerReserve += amount;
 

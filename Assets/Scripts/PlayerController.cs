@@ -48,11 +48,25 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Lethal"))
         {
             Destroy(gameObject);
             Debug.Log("you died");
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(
+            "Collided with "
+                + other.gameObject.name
+                + " and does it have power leach tag? well, "
+                + other.gameObject.CompareTag("Power Leach")
+        );
+        if (other.gameObject.CompareTag("Power Leach"))
+        {
+            other.GetComponent<PowerLeach>().DrainPower();
+            Destroy(other.gameObject);
         }
     }
 }

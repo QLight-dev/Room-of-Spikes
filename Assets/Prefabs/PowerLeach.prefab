@@ -101,9 +101,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7812051007098652689}
+  - component: {fileID: 8054363185029208809}
+  - component: {fileID: -2766804363778348422}
+  - component: {fileID: 5667205864138831377}
   m_Layer: 0
   m_Name: PowerLeach
-  m_TagString: Untagged
+  m_TagString: Power Leach
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 4346843899979118690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -125,6 +128,52 @@ Transform:
   - {fileID: 8042616216946357907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8054363185029208809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346843899979118690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fe9f990397ff04ca35e49b93b21932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerLeach
+--- !u!210 &-2766804363778348422
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346843899979118690}
+  m_Enabled: 1
+  m_SortingLayerID: 361729939
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!65 &5667205864138831377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346843899979118690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.4943943, y: 0.5105574, z: 1}
+  m_Center: {x: -7.7828064, y: 0.0041561276, z: 0}
 --- !u!1 &8535505530896402233
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 8535505530896402233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.85, y: 0, z: 0}
+  m_LocalPosition: {x: -7.85, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
