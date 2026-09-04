@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,14 +11,26 @@ public class GameManager : MonoBehaviour
 
     private GameObject[] GhostSpikes = new GameObject[67];
 
-    public AudioClip warningSFX;
-    public AudioClip drawSwordSFX;
-    public AudioClip laserSFX;
+    [Header("Sound Effects")]
+    [SerializeField]
+    private AudioClip warningSFX;
 
+    [SerializeField]
+    private AudioClip drawSwordSFX;
+
+    [SerializeField]
+    private AudioClip laserSFX;
+
+    [Header("Prefabs")]
     public GameObject ghostLaserPrefab;
     public GameObject ghostLaserVerticalPrefab;
 
+    public TMP_Text PowerReserveText;
+
     public GameObject[] Lasers = new GameObject[12];
+
+    //hi
+    private float PowerReserve = 100.0f;
 
     void Start()
     {
@@ -59,11 +72,13 @@ public class GameManager : MonoBehaviour
                 audioSource.PlayOneShot(laserSFX, 1f);
                 ActivateHorizontalLasers();
                 ActivateVerticalLasers();
+                ChangePowerReserve(-Lasers.Length * 0.5f);
                 yield return new WaitForSeconds(1f);
 
                 UnActivateHoriztontalLasers();
                 UnActivateVerticalLasers();
                 yield return new WaitForSeconds(1f);
+
                 if (Random.Range(1, 3) == 2)
                 {
                     LaserWave = true;
@@ -84,6 +99,7 @@ public class GameManager : MonoBehaviour
 
                 audioSource.PlayOneShot(drawSwordSFX, 1f);
                 FoldChosenSpikes();
+                ChangePowerReserve(-1.6f);
                 yield return new WaitForSeconds(1f);
 
                 UnfoldChosenSpikes();
@@ -92,7 +108,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void LaserWave() { }
+    private void ChangePowerReserve(float amount)
+    {
+        PowerReserve += amount;
+
+        PowerReserve = Mathf.Round(PowerReserve * 10f) / 10f;
+
+        PowerReserve = Mathf.Clamp(PowerReserve, 0f, 100f);
+
+        PowerReserveText.SetText("{0:0.0}%", PowerReserve);
+    }
 
     private void generateRandomSpikes()
     {
