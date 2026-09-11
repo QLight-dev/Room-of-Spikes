@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -50,8 +51,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Lethal"))
         {
+            SceneManager.LoadScene("Game Over");
             Destroy(gameObject);
-            Debug.Log("you died");
         }
     }
 
